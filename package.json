@@ -23,7 +23,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.0",
+    "@actions/core": "^1.11.1",
     "@notionhq/client": "^2.2.15",
     "change-case": "^5.4.4",
     "dotenv": "^16.4.7",
