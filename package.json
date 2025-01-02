@@ -10,7 +10,7 @@
     "test": "vitest",
     "test:ci": "vitest run",
     "prepare": "husky",
-    "publish": "ncc build --source-map --license licenses.txt"
+    "publish": "ncc build -m --license licenses.txt"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "@notionhq/client": "^2.2.1",
+    "@notionhq/client": "^2.2.15",
     "change-case": "^5.4.4",
     "dotenv": "^16.4.7",
     "fs-extra": "^11.1.0",
