@@ -69,8 +69,8 @@ export class Notion {
         let header = buildHeaderFromProperties(page.properties);
         writeFile(`${dir}/${filename}`, header + pageContent.parent, (err) => {
           if (err) {
-            console.log("============ ERROR =============");
-            console.log(err);
+            console.error("============ ERROR =============");
+            console.error(err);
           }
         });
       }
@@ -128,6 +128,7 @@ export class Notion {
   }
 
   async getParent(type, id, existingPages) {
+    const page = existingPages.find((p) => p.id === id);
     switch (type) {
       case "block":
         return await this.notionClient.blocks.retrieve({
@@ -135,7 +136,6 @@ export class Notion {
         });
 
       case "page":
-        const page = existingPages.find((p) => p.id === id);
         if (page) {
           return Promise.resolve(page);
         } else {
@@ -197,7 +197,6 @@ export const parseProperty = (property) => {
   }
 };
 export const buildHeaderFromProperties = (properties) => {
-  console.log(JSON.stringify(properties));
   if (!properties || !Object.keys(properties).length) return "";
   let header = "---\n";
   Object.entries(properties)
