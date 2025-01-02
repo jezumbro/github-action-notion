@@ -7,8 +7,11 @@ on: # rebuild any PRs and main branch changes
       - "releases/*"
 
 jobs:
-  build: # make sure build/ci work properly
+  build-test: # make sure build/ci work properly
     runs-on: ubuntu-24.04
+    env:
+      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      NOTION_ROOT_PAGE_ID: ${{ secrets.NOTION_ROOT_PAGE_ID }}
     steps:
       - uses: actions/checkout@v4
       - run: |
@@ -18,13 +21,5 @@ jobs:
           npm run test:ci
       - run: |
           npm run publish
-  test: # make sure the action works on a clean machine without building
-    runs-on: ubuntu-24.04
-    needs: build
-    env:
-      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-      NOTION_ROOT_PAGE_ID: ${{ secrets.NOTION_ROOT_PAGE_ID }}
-    steps:
-      - uses: actions/checkout@v4
       - run: |
           npm start
