@@ -3,7 +3,22 @@ import { buildHeaderFromProperties, parseProperty } from "../src/notion";
 
 describe("property parsing", () => {
   const properties = {
-    tags: { id: "%3EnuZ", type: "multi_select", multi_select: [] },
+    tags: {
+      id: "%3EnuZ",
+      type: "multi_select",
+      multi_select: [
+        {
+          id: "3cccda43-dfce-4edb-bdbd-a3652c3193bc",
+          name: "tech",
+          color: "green",
+        },
+        {
+          id: "ab1fd927-fc16-4a64-9e15-dcd72f526c96",
+          name: "blog",
+          color: "pink",
+        },
+      ],
+    },
     "Created time": {
       id: "pg%5C%5D",
       type: "created_time",
@@ -49,6 +64,7 @@ describe("property parsing", () => {
     ["title", "A title"],
     ["Created time", "2024-12-30T13:33:00.000Z"],
     ["Published Date", "2024-12-09"],
+    ["tags", "blog,tech"],
     ["unknown", undefined],
   ])("parseProperty(%s)=%s", (property, expected) => {
     expect(parseProperty(properties[property])).toEqual(expected);
@@ -69,7 +85,14 @@ describe("property parsing", () => {
     test("default set", () => {
       const output = buildHeaderFromProperties(properties);
       expect(output).toEqual(
-        "---\ncreatedTime: 2024-12-30T13:33:00.000Z\npublishedDate: 2024-12-09\nstatus: Not started\ntitle: A title\n---\n",
+        `---
+createdTime: 2024-12-30T13:33:00.000Z
+publishedDate: 2024-12-09
+status: Not started
+tags: blog,tech
+title: A title
+---
+`,
       );
     });
     test("with date instead of string", () => {
