@@ -1,4 +1,4 @@
-name: "Notion Pages"
+name: "Notion To Markdown Pages"
 description: "Generate markdown files in _posts folder from Notion pages."
 author: "John E. Zumbro"
 inputs:
