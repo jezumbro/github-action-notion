@@ -1,7 +1,7 @@
 import "dotenv/config.js";
 import { Notion } from "../src/notion.js";
 
-const rootPageId = process.env.ROOT_PAGE_ID;
+const rootPageId = process.env.NOTION_ROOT_PAGE_ID;
 const notion = new Notion(process.env.NOTION_TOKEN);
 
 (async () => {

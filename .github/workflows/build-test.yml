@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          npm i
+          npm ci
       - run: |
           npm run format:ci
           npm run test:ci
@@ -21,10 +21,10 @@ jobs:
   test: # make sure the action works on a clean machine without building
     runs-on: ubuntu-24.04
     needs: build
+    env:
+      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      NOTION_ROOT_PAGE_ID: ${{ secrets.NOTION_ROOT_PAGE_ID }}
     steps:
       - uses: actions/checkout@v4
-      - uses: ./
-        with:
-          notion-token: ${{ secrets.NOTION_TOKEN }}
-          root-page-id: ${{ secrets.NOTION_ROOT_PAGE_ID }}
-          output-dir: ./_posts/
+      - run: |
+          npm start
