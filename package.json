@@ -1,0 +1,46 @@
+{
+  "name": "@jezumbro/github-action-notion",
+  "description": "Output all pages into folder for github pages.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node __tests__/index.test.js",
+    "format": "prettier --write .",
+    "format:ci": "prettier --check .",
+    "test": "vitest",
+    "test:ci": "vitest run",
+    "prepare": "husky",
+    "publish": "ncc build --source-map --license licenses.txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jezumbro/github-action-notion.git"
+  },
+  "keywords": [
+    "actions",
+    "notion",
+    "astro"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@notionhq/client": "^2.2.1",
+    "change-case": "^5.4.4",
+    "dotenv": "^16.0.3",
+    "fs-extra": "^11.1.0",
+    "notion-to-md": "^2.5.5"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@types/fs-extra": "^9.0.13",
+    "@types/node": "^18.11.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-github": "^4.3.2",
+    "husky": "^9.1.7",
+    "js-yaml": "^4.1.0",
+    "prettier": "^2.7.1",
+    "vitest": "^2.1.8"
+  }
+}
