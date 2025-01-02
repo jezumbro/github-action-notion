@@ -10,7 +10,7 @@
     "test": "vitest",
     "test:ci": "vitest run",
     "prepare": "husky",
-    "publish": "ncc build --source-map --license licenses.txt"
+    "publish": "ncc build -m --license licenses.txt"
   },
   "repository": {
     "type": "git",

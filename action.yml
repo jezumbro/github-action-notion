@@ -1,6 +1,6 @@
 name: "Notion Pages"
 description: "Generate markdown files in _posts folder from Notion pages."
-author: "Bendy Zhang"
+author: "John E. Zumbro"
 inputs:
   notion-token:
     required: true
