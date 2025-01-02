@@ -1,8 +1,8 @@
 import { Client, LogLevel } from "@notionhq/client";
-import { existsSync, mkdirSync, writeFile } from "fs";
-import { NotionToMarkdown } from "notion-to-md";
-import * as util from "node:util";
 import { camelCase } from "change-case";
+import { existsSync, mkdirSync, writeFile } from "fs";
+import * as util from "node:util";
+import { NotionToMarkdown } from "notion-to-md";
 
 export class Notion {
   constructor(notionToken) {
@@ -53,7 +53,7 @@ export class Notion {
       mkdirSync(dir);
     }
     let contentPages = this.pages.filter(
-      (page) => !page.children || page.children.length === 0
+      (page) => !page.children || page.children.length === 0,
     );
     for (const page of contentPages) {
       const pageContent = await this.getMarkdownByPageId(page.id, 4);
@@ -72,7 +72,7 @@ export class Notion {
             new RegExp(`\{\{${key}\}\}`, "g"),
             Array.isArray(page[key])
               ? page[key].toString().replace('"', "")
-              : page[key]
+              : page[key],
           );
         });
 
@@ -107,11 +107,11 @@ export class Notion {
 
   setChildPages(currentPage) {
     currentPage.children = this.pages.filter(
-      (page) => page.parentId === currentPage.id
+      (page) => page.parentId === currentPage.id,
     );
     for (const childPage of currentPage.children) {
       childPage.parentIds = [currentPage.id].concat(
-        currentPage.parentIds || []
+        currentPage.parentIds || [],
       );
       childPage.categories.push(...currentPage.categories, currentPage.title);
       childPage.tags = childPage.categories;
@@ -125,7 +125,7 @@ export class Notion {
       const parent = await this.getParent(
         type,
         curPageOrBlock.parent[curPageOrBlock.parent.type],
-        existingPages
+        existingPages,
       );
       if (parent && parent["object"] === "page") {
         return Promise.resolve(parent);
@@ -212,7 +212,7 @@ export const buildHeaderFromProperties = (properties) => {
         header += `${formattedKey}: ${value}\n`;
       } else {
         console.error(
-          `unknown property type for ${formattedKey}: ${property?.type}`
+          `unknown property type for ${formattedKey}: ${property?.type}`,
         );
       }
     });
