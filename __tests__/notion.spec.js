@@ -1,6 +1,5 @@
-import { expect, test, describe } from "vitest";
+import { describe, expect, test } from "vitest";
 import { buildHeaderFromProperties, parseProperty } from "../src/notion";
-import { camelCase } from "change-case";
 
 describe("property parsing", () => {
   const properties = {
@@ -70,7 +69,7 @@ describe("property parsing", () => {
     test("default set", () => {
       const output = buildHeaderFromProperties(properties);
       expect(output).toEqual(
-        "---\ncreatedTime: 2024-12-30T13:33:00.000Z\npublishedDate: 2024-12-09\nstatus: Not started\ntitle: A title\n---\n"
+        "---\ncreatedTime: 2024-12-30T13:33:00.000Z\npublishedDate: 2024-12-09\nstatus: Not started\ntitle: A title\n---\n",
       );
     });
     test("with date instead of string", () => {
