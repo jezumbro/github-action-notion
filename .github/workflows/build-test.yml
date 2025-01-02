@@ -20,6 +20,7 @@ jobs:
           npm run publish
   test: # make sure the action works on a clean machine without building
     runs-on: ubuntu-24.04
+    needs: build
     steps:
       - uses: actions/checkout@v4
       - uses: ./
