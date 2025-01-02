@@ -15,8 +15,8 @@ export class Notion {
     this.n2m = new NotionToMarkdown({ notionClient: this.notionClient });
   }
 
-  async getMarkdownByPageId(pageId, totalPage) {
-    const mdblocks = await this.n2m.pageToMarkdown(pageId, totalPage);
+  async getMarkdownByPageId(pageId) {
+    const mdblocks = await this.n2m.pageToMarkdown(pageId);
     return this.n2m.toMarkdownString(mdblocks);
   }
 
@@ -56,8 +56,8 @@ export class Notion {
       (page) => !page.children || page.children.length === 0,
     );
     for (const page of contentPages) {
-      const pageContent = await this.getMarkdownByPageId(page.id, 4);
-      if (pageContent) {
+      const pageContent = await this.getMarkdownByPageId(page.id);
+      if (pageContent?.parent) {
         const filename = `${page.createdAt.getFullYear()}-${(
           page.createdAt.getMonth() + 1
         )
@@ -67,16 +67,7 @@ export class Notion {
           .toString()
           .padStart(2, "0")}-${page.pathname}.md`;
         let header = buildHeaderFromProperties(page.properties);
-        Object.keys(page).forEach((key) => {
-          header = header.replace(
-            new RegExp(`\{\{${key}\}\}`, "g"),
-            Array.isArray(page[key])
-              ? page[key].toString().replace('"', "")
-              : page[key],
-          );
-        });
-
-        writeFile(`${dir}/${filename}`, header + pageContent, (err) => {
+        writeFile(`${dir}/${filename}`, header + pageContent.parent, (err) => {
           if (err) {
             console.log("============ ERROR =============");
             console.log(err);
@@ -182,6 +173,11 @@ const lookup = {
     }
     return date;
   },
+  multi_select: (property) =>
+    property.multi_select
+      .map((p) => p.name)
+      .sort((a, b) => a.localeCompare(b))
+      .join(","),
   status: (property) => property.status.name,
   text: (property) => property.text.content,
   title: (property) => {
@@ -201,6 +197,7 @@ export const parseProperty = (property) => {
   }
 };
 export const buildHeaderFromProperties = (properties) => {
+  console.log(JSON.stringify(properties));
   if (!properties || !Object.keys(properties).length) return "";
   let header = "---\n";
   Object.entries(properties)
