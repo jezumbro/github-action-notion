@@ -58,13 +58,19 @@ describe("property parsing", () => {
       type: "date",
       date: { start: "2024-12-09", end: null, time_zone: null },
     },
+    slug: {
+      id: "%60eIR",
+      type: "rich_text",
+      rich_text: [{ type: "text", text: { content: "init", link: null } }],
+    },
   };
 
   test.each([
     ["title", "A title"],
     ["Created time", "2024-12-30T13:33:00.000Z"],
     ["Published Date", "2024-12-09"],
-    ["tags", "blog,tech"],
+    ["tags", ["blog", "tech"]],
+    ["slug", "init"],
     ["unknown", undefined],
   ])("parseProperty(%s)=%s", (property, expected) => {
     expect(parseProperty(properties[property])).toEqual(expected);
@@ -88,8 +94,9 @@ describe("property parsing", () => {
         `---
 createdTime: 2024-12-30T13:33:00.000Z
 publishedDate: 2024-12-09
+slug: init
 status: Not started
-tags: blog,tech
+tags: ["blog","tech"]
 title: A title
 ---
 `,
