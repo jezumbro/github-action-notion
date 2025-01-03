@@ -52,7 +52,7 @@ jobs:
         run: npm start
   release-please:
     needs: [build, test]
-    if: contains(github.ref, 'origin/main')
+    if: contains(github.ref, 'heads/main')
     permissions:
       contents: write
       pull-requests: write
