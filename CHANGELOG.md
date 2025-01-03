@@ -2,10 +2,9 @@
 
 ## [1.0.4](https://github.com/jezumbro/github-action-notion/compare/v1.0.3...v1.0.4) (2025-01-03)
 
-
 ### Bug Fixes
 
-* **notion:** add rich_text and tags as array support ([#21](https://github.com/jezumbro/github-action-notion/issues/21)) ([b202092](https://github.com/jezumbro/github-action-notion/commit/b202092e3528f0f041613c2fe345b1c0f7479450))
+- **notion:** add rich_text and tags as array support ([#21](https://github.com/jezumbro/github-action-notion/issues/21)) ([b202092](https://github.com/jezumbro/github-action-notion/commit/b202092e3528f0f041613c2fe345b1c0f7479450))
 
 ## [1.0.3](https://github.com/jezumbro/github-action-notion/compare/v1.0.2...v1.0.3) (2025-01-03)
 
