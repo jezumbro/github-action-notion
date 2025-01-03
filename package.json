@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node __tests__/index.test.js",
+    "format": "npm run prettier && npm run lint",
     "format:ci": "npm run prettier:ci && npm run lint:ci",
     "lint": "eslint . --fix",
     "lint:ci": "eslint .",

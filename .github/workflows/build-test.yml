@@ -23,3 +23,8 @@ jobs:
           npm run publish
       - run: |
           npm start
+      - name: Bump version
+        id: bump
+        uses: licenseware/bump-version@v1.2.87
+      - name: Get the new version
+        run: echo "The new version is ${{ steps.bump.outputs.version }}"
