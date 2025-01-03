@@ -12,17 +12,8 @@ permissions:
 jobs:
   build: # make sure build/ci work properly
     runs-on: ubuntu-24.04
-    outputs:
-      shared_version: ${{steps.bump.outputs.version}}
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: "0"
-          fetch-tags: "true"
-
-      - name: save version
-        id: bump
-        uses: licenseware/bump-version@v1.2.87
 
       - name: Set Node.js 20.x
         uses: actions/setup-node@v4.1.0
@@ -59,10 +50,18 @@ jobs:
           name: "distribution"
       - name: check integration test
         run: npm start
-
-  publish:
+  release-please:
+    needs: [build, test]
+    if: contains(github.ref, 'origin/main')
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-24.04
-    needs: build
     steps:
-      - name: Get the new version
-        run: echo "The new version is ${{ needs.build.outputs.shared_version }}"
+      - name: download
+        uses: actions/download-artifact@v4
+        with:
+          name: "distribution"
+      - uses: googleapis/release-please-action@v4
+        with:
+          release-type: node
