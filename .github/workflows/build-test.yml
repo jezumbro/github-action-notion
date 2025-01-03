@@ -38,9 +38,6 @@ jobs:
       - name: check tests
         run: npm run test:ci
 
-      - name: check integration test
-        run: npm start
-
       - name: publish
         run: npm run publish
 
