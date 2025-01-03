@@ -28,6 +28,7 @@ jobs:
       - name: save version
         run: |
           echo "GHA_VERSION=${{ steps.bump.outputs.version }}" >> $GITHUB_ENV
+          echo "The new version is ${{ env.GHA_VERSION }}"
 
       - name: Set Node.js 20.x
         uses: actions/setup-node@v4.1.0
@@ -50,7 +51,6 @@ jobs:
         run: npm run publish
 
       - uses: actions/upload-artifact@v4
-        if: contains(github.ref, 'origin/main' )
         with:
           name: "distribution"
           path: "*"
