@@ -174,10 +174,7 @@ const lookup = {
     return date;
   },
   multi_select: (property) =>
-    property.multi_select
-      .map((p) => p.name)
-      .sort((a, b) => a.localeCompare(b))
-      .join(","),
+    property.multi_select.map((p) => p.name).sort((a, b) => a.localeCompare(b)),
   status: (property) => property.status.name,
   text: (property) => property.text.content,
   title: (property) => {
@@ -189,6 +186,8 @@ const lookup = {
           .join("")
       : "";
   },
+  rich_text: (property) =>
+    property.rich_text.map((p) => parseProperty(p)).join(""),
 };
 export const parseProperty = (property) => {
   const propertyType = property?.type;
@@ -203,8 +202,11 @@ export const buildHeaderFromProperties = (properties) => {
     .sort(([a], [b]) => a.localeCompare(b))
     .forEach(([key, property]) => {
       const formattedKey = camelCase(key);
-      const value = parseProperty(property);
+      let value = parseProperty(property);
       if (value) {
+        if (!(typeof value === "string")) {
+          value = JSON.stringify(value);
+        }
         header += `${formattedKey}: ${value}\n`;
       } else {
         console.error(
