@@ -2,10 +2,9 @@
 
 ## [1.1.0](https://github.com/jezumbro/github-action-notion/compare/v1.0.4...v1.1.0) (2025-01-12)
 
-
 ### Features
 
-* checkbox support ([#27](https://github.com/jezumbro/github-action-notion/issues/27)) ([cd114e8](https://github.com/jezumbro/github-action-notion/commit/cd114e8ec4fe0006be21a4d4057eda492adc9cfb))
+- checkbox support ([#27](https://github.com/jezumbro/github-action-notion/issues/27)) ([cd114e8](https://github.com/jezumbro/github-action-notion/commit/cd114e8ec4fe0006be21a4d4057eda492adc9cfb))
 
 ## [1.0.4](https://github.com/jezumbro/github-action-notion/compare/v1.0.3...v1.0.4) (2025-01-03)
 
