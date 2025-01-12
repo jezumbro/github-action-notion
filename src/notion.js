@@ -186,6 +186,7 @@ const lookup = {
           .join("")
       : "";
   },
+  checkbox: (property) => property.checkbox,
   rich_text: (property) =>
     property.rich_text.map((p) => parseProperty(p)).join(""),
 };
@@ -203,7 +204,7 @@ export const buildHeaderFromProperties = (properties) => {
     .forEach(([key, property]) => {
       const formattedKey = camelCase(key);
       let value = parseProperty(property);
-      if (value) {
+      if (value !== undefined) {
         if (!(typeof value === "string")) {
           value = JSON.stringify(value);
         }
