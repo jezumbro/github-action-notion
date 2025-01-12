@@ -3,6 +3,7 @@ import { buildHeaderFromProperties, parseProperty } from "../src/notion";
 
 describe("property parsing", () => {
   const properties = {
+    draft: { id: "EXEz", type: "checkbox", checkbox: false },
     tags: {
       id: "%3EnuZ",
       type: "multi_select",
@@ -72,6 +73,7 @@ describe("property parsing", () => {
     ["tags", ["blog", "tech"]],
     ["slug", "init"],
     ["unknown", undefined],
+    ["draft", false],
   ])("parseProperty(%s)=%s", (property, expected) => {
     expect(parseProperty(properties[property])).toEqual(expected);
   });
@@ -93,6 +95,7 @@ describe("property parsing", () => {
       expect(output).toEqual(
         `---
 createdTime: 2024-12-30T13:33:00.000Z
+draft: false
 publishedDate: 2024-12-09
 slug: init
 status: Not started
