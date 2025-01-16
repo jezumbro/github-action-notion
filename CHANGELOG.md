@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/jezumbro/github-action-notion/compare/v1.1.0...v1.1.1) (2025-01-16)
+
+
+### Bug Fixes
+
+* release new distribution ([7be7016](https://github.com/jezumbro/github-action-notion/commit/7be701649dcb62f31ecc33b4d136148e710f5c6d))
+
 ## [1.1.0](https://github.com/jezumbro/github-action-notion/compare/v1.0.4...v1.1.0) (2025-01-12)
 
 ### Features
