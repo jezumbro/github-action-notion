@@ -31,7 +31,7 @@
     "@notionhq/client": "^2.2.15",
     "change-case": "^5.4.4",
     "dotenv": "^16.4.7",
-    "fs-extra": "^11.1.0",
+    "fs-extra": "^11.3.0",
     "notion-to-md": "^3.1.4"
   },
   "devDependencies": {
